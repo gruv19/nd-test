@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+}
+.header__logo {
+  margin-bottom: 30px;
+}
+.header__logo-icon {
+  width: 99px; 
+  height: 36px;
+}
+.header__title {
+  font-family: 'FuturaPT', sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 40px;
+  color: $dark;
+  @media screen and (min-width: $tablet) {
+    font-size: 42px;
+    line-height: 50px;
+  }
+}
