@@ -1,0 +1,38 @@
+.main {
+  max-width: 360px;
+  min-width: 360px;
+  padding: 12px 12px 60px;
+  margin: 0 auto;
+  @media screen and (min-width: $tablet) {
+    max-width: 768px;
+    padding: 30px 45px 60px;
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 1366px;
+    padding: 30px 100px 60px;
+  }
+}
+
+.main__header {
+  margin-bottom: 30px;
+}
+
+.main__search {
+
+}
+
+.main__manage {
+
+}
+
+.main__manage-count {
+
+}
+
+.main__cards {
+
+}
+
+.main__pagination {
+
+}
