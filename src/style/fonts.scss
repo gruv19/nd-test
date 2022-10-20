@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'HouschkaPro';
+  src: url("~@/assets/fonts/HouschkaPro-ExtraBold.ttf") format('truetype'),
+    url("~@/assets/fonts/HouschkaPro-ExtraBold.woff2") format("woff2"),
+    url("~@/assets/fonts/HouschkaPro-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HouschkaPro';
+  src: url("~@/assets/fonts/HouschkaPro-Bold.ttf") format('truetype'),
+    url("~@/assets/fonts/HouschkaPro-Bold.woff2") format("woff2"),
+    url("~@/assets/fonts/HouschkaPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HouschkaPro';
+  src: url("~@/assets/fonts/HouschkaPro-Medium.ttf") format('truetype'),
+    url("~@/assets/fonts/HouschkaPro-Medium.woff2") format("woff2"),
+    url("~@/assets/fonts/HouschkaPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FuturaPT';
+  src: url("~@/assets/fonts/FuturaPT-Heavy.ttf") format('truetype'),
+    url("~@/assets/fonts/FuturaPT-Heavy.woff2") format("woff2"),
+    url("~@/assets/fonts/FuturaPT-Heavy.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
