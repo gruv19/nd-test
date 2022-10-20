@@ -31,3 +31,7 @@ export default {
   components: { Header, Search, Sort, Card },
 }
 </script>
+
+<style lang="scss">
+@import '@/style/style.scss';
+</style>
