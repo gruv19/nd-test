@@ -1,0 +1,38 @@
+.sort {
+  display: flex;
+  align-items: center;
+  font-family: 'HouschkaPro';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 19px;
+  color: #9DB0BF;
+}
+
+.sort__label {
+  margin-right: 15px;
+}
+
+.sort__link {
+  color: $blue;
+  text-decoration: none;
+  border-bottom: 1px dashed $blue;
+  & + & {
+    margin-left: 15px;
+  }
+  &--active {
+    border: none;
+    color: $dark;
+  }
+}
+
+// .sort__text {}
+
+.sort__icon {
+  width: 7px;
+  height: 8px;
+  margin-left: 3px;
+  transform: rotateZ(180deg);
+  &--up {
+    transform: rotateZ(0deg);
+  }
+}
