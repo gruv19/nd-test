@@ -8,7 +8,9 @@
     </div>
     <div class="main__manage">
       <div class="main__manage-count">100 результатов</div>
-      <Sort />
+      <div class="main__sort">
+        <Sort :properties="sortsProperties" />
+      </div>
     </div>
     <div class="main__cards">
       <Card />
@@ -29,6 +31,11 @@ import Card from "@/components/Card.vue";
 export default {
   name: 'App',
   components: { Header, Search, Sort, Card },
+  data() {
+    return {
+      sortsProperties: ['Цене', 'Алфавиту'],
+    };
+  },
 }
 </script>
 
