@@ -3,9 +3,14 @@
   align-items: center;
   font-family: 'HouschkaPro';
   font-weight: 500;
-  font-size: 15px;
-  line-height: 19px;
+  font-size: 13px;
+  line-height: 18px;
   color: #9DB0BF;
+  position: relative;
+  @media screen and (min-width: $tablet) {
+    font-size: 15px;
+    line-height: 19px;
+  }
 }
 
 .sort__label {
@@ -13,6 +18,10 @@
 }
 
 .sort__link {
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: inline;
+  }
   color: $blue;
   text-decoration: none;
   border-bottom: 1px dashed $blue;
@@ -22,6 +31,14 @@
   &--active {
     border: none;
     color: $dark;
+  }
+  &:hover {
+    color: $red;
+    border-bottom: 1px dashed $red;
+  }
+  &:active {
+    color: $red-dark;
+    border-bottom: 1px dashed $red-dark;
   }
 }
 
@@ -34,5 +51,52 @@
   transform: rotateZ(180deg);
   &--up {
     transform: rotateZ(0deg);
+  }
+}
+
+.sort__menu {
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+  position: absolute;
+  padding: 0;
+  opacity: 0;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  right: 0;
+  top: 21px;
+  max-height: 1px;
+  overflow: hidden;
+  transition: padding 0.3s, max-height 0.3s;
+  &--active {
+    padding: 12px;
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+.sort__active {
+  color: $dark;
+  display: block;
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+
+.sort__item {
+  text-decoration: none;
+  color: $dark;
+  display: block;
+  margin-top: 12px;
+  text-align: right;
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.sort__list {
+  & + & {
+    margin-top: 12px;
   }
 }
