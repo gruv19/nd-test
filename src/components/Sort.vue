@@ -20,6 +20,28 @@
         <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
       </svg>
     </a>
+    <a class="sort__active" @click="openMenu">
+      <span class="sort__text">{{ active.title }}</span>
+      <svg class="sort__icon" :class="active.inAscending ? '' : 'sort__icon--up'" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
+      </svg>
+    </a>
+    <div class="sort__menu" :class="menuIsOpen ? 'sort__menu--active' : ''">
+      <div class="sort__list" v-for="property in properties" :key="property">
+        <a href="#" class="sort__item" @click.prevent="sortMobile(property, 'descending')">
+          <span class="sort__text">{{ property.title }}</span>
+          <svg class="sort__icon sort__icon--up" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
+          </svg>
+        </a>
+        <a href="#" class="sort__item" @click.prevent="sortMobile(property, 'ascending')">
+          <span class="sort__text">{{ property.title }}</span>
+          <svg class="sort__icon" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -71,20 +93,22 @@ export default {
     return {
       properties: [
         {
-          title: 'Алфавиту',
-          inAscending: true,
-          ascending: sortAlphabetAscend,
-          descending: sortAlphabetDescend,
-          isActive: true,
-        },
-        {
           title: 'Цене',
           inAscending: false,
           ascending: sortCostAscend,
           descending: sortCostDescend,
           isActive: false,
         },
+        {
+          title: 'Алфавиту',
+          inAscending: true,
+          ascending: sortAlphabetAscend,
+          descending: sortAlphabetDescend,
+          isActive: true,
+        },
       ],
+      active: {},
+      menuIsOpen: false,
     };
   },
   methods: {
@@ -100,6 +124,18 @@ export default {
         property.inAscending = true;
         this.$emit('sort', property.ascending);
       }
+      this.active = property;
+    },
+    sortMobile(property, sortOrder) {
+      this.unactivate();
+      property.isActive = true;
+      property.inAscending = sortOrder === 'ascending' ? true : false;
+      this.active = property;
+      this.$emit('sort', property[sortOrder]);
+      this.menuIsOpen = false;
+    },
+    openMenu() {
+      this.menuIsOpen = !this.menuIsOpen;
     },
     unactivate() {
       this.properties = this.properties.map((property) => {
@@ -115,7 +151,8 @@ export default {
     },
   },
   mounted() {
-    this.$emit('sort', this.properties[0].ascending);
+    this.$emit('sort', this.properties[1].ascending);
+    this.active = this.properties[1];
   }
 }
 </script>
