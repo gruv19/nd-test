@@ -7,15 +7,22 @@
       <Search />
     </div>
     <div class="main__manage">
-      <div class="main__manage-count">100 результатов</div>
+      <div class="main__manage-count">{{ courses.length }} результатов</div>
       <div class="main__sort">
-        <Sort :properties="sortsProperties" />
+        <Sort @sort="sortCourses" />
       </div>
     </div>
     <div class="main__cards">
-      <Card />
-      <Card />
-      <Card />
+      <Card
+        v-for="course in courses"
+        :key="course.id"
+        :id="course.id"
+        :img="course.preview_img_path"
+        :title="course.title"
+        :cost="course.cost"
+        :currency="course.cost_currency"
+        :series="course.series"
+      />
     </div>
     <div class="main__pagination"></div>
   </main>
@@ -27,15 +34,24 @@ import Header from "@/components/Header.vue";
 import Search from "@/components/Search.vue";
 import Sort from "@/components/Sort.vue";
 import Card from "@/components/Card.vue";
+import courses from "@/mock.js";
 
 export default {
   name: 'App',
   components: { Header, Search, Sort, Card },
   data() {
     return {
-      sortsProperties: ['Цене', 'Алфавиту'],
+      courses: [],
     };
   },
+  methods: {
+    sortCourses(sortFunction) {
+      console.log(sortFunction(this.courses));
+    }
+  },
+  mounted() {
+    this.courses = courses;
+  }
 }
 </script>
 
