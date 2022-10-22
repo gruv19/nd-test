@@ -1,7 +1,7 @@
 const courses = [
   {
     id: 3,
-    preview_img_path: "cover/pic4.jpg",
+    preview_img_path: "/course-images/06.jpg",
     title: "Базовые принципы разработки решений с блокчейн",
     cost: 135000,
     cost_currency: "₽",
@@ -9,7 +9,7 @@ const courses = [
   },
   {
     id: 8,
-    preview_img_path: "cover/pic9.jpg",
+    preview_img_path: "/course-images/08.jpg",
     title:
       "Базовые принципы разработки решений с блокчейн. Продвинутый уровень",
     cost: 80000,
@@ -18,7 +18,7 @@ const courses = [
   },
   {
     id: 1,
-    preview_img_path: "cover/pic2.jpg",
+    preview_img_path: "/course-images/02.jpg",
     title: "Как добывают нефть",
     cost: 135000,
     cost_currency: "₽",
@@ -26,7 +26,7 @@ const courses = [
   },
   {
     id: 6,
-    preview_img_path: "cover/pic7.jpg",
+    preview_img_path: "/course-images/03.jpg",
     title: "Как добывают нефть. Продвинутый уровень",
     cost: 150000,
     cost_currency: "₽",
@@ -34,7 +34,7 @@ const courses = [
   },
   {
     id: 2,
-    preview_img_path: "cover/pic3.jpg",
+    preview_img_path: "/course-images/07.jpg",
     title: "Основы искусственного интеллекта и машинного обучения с Python",
     cost: 135000,
     cost_currency: "₽",
@@ -42,7 +42,7 @@ const courses = [
   },
   {
     id: 7,
-    preview_img_path: "cover/pic8.jpg",
+    preview_img_path: "/course-images/09.jpg",
     title:
       "Основы искусственного интеллекта и машинного обучения с Python. Продвинутый уровень",
     cost: 150000,
@@ -51,7 +51,7 @@ const courses = [
   },
   {
     id: 4,
-    preview_img_path: "cover/pic5.jpg",
+    preview_img_path: "/course-images/04.jpg",
     title: "Продажи от «А» до «Я»",
     cost: 135000,
     cost_currency: "₽",
@@ -59,7 +59,7 @@ const courses = [
   },
   {
     id: 9,
-    preview_img_path: "cover/pic10.jpg",
+    preview_img_path: "/course-images/05.jpg",
     title: "Продажи от «А» до «Я». Продвинутый уровень",
     cost: 160000,
     cost_currency: "₽",
@@ -67,7 +67,7 @@ const courses = [
   },
   {
     id: 10,
-    preview_img_path: "cover/pic1.jpg",
+    preview_img_path: "/course-images/10.jpg",
     title: "Прокрастинация: как не откладывать дела",
     cost: 135000,
     cost_currency: "₽",
@@ -75,7 +75,7 @@ const courses = [
   },
   {
     id: 5,
-    preview_img_path: "cover/pic6.jpg",
+    preview_img_path: "/course-images/01.jpg",
     title: "Прокрастинация: как не откладывать дела. Продвинутый уровень",
     cost: 150000,
     cost_currency: "₽",
