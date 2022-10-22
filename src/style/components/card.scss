@@ -1,0 +1,105 @@
+.card {
+  width: 336px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 4px;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  &:hover .card__overlay {
+    transform: translateY(0px);
+    transition: transform 0.3s, background 0.4s ease-out;
+    background-size: 100% 200%;
+    background-position-y: 80%;
+  }
+  &:active .card__overlay {
+    transform: translateY(0px);
+    box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, background 0.4s ease-out;
+  }
+  @media screen and (min-width: $tablet) {
+    width: 324px;
+    height: 400px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 369px;
+    height: 400px;
+  }
+}
+
+.card__img {
+
+}
+
+.card__overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  padding: 80px 15px 15px;
+  background: linear-gradient(0deg, #4C5A79 0%, rgba(76, 90, 121, 0) 100%);
+  bottom: 0;
+  transform: translateY(42px);
+  transition: transform 0.3s, background 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  @media screen and (min-width: $tablet) {
+    font-size: 15px;
+    line-height: 1px;
+    padding: 56px 30px 25px;
+    transform: translateY(50px);
+  }
+}
+
+.card__series {
+  font-family: 'HouschkaPro';
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0px 15px;
+  border-radius: 2px;
+  background-color: $blue;
+  display: inline-block;
+  @media screen and (min-width: $tablet) {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+.card__title,
+.card__cost {
+  font-family: 'HouschkaPro';
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 12px 0;
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+.card__cost {
+  margin: 0 0 12px;
+}
+
+.card__detail {
+  font-family: 'HouschkaPro';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #FFFFFF;
+  
+}
+
+.card__detail-icon {
+  width: 20px;
+  height: 10px;
+  margin-left: 10px;
+}
