@@ -13,10 +13,6 @@
   }
 }
 
-.sort__label {
-  margin-right: 15px;
-}
-
 .sort__link {
   display: none;
   @media screen and (min-width: $tablet) {
@@ -25,9 +21,7 @@
   color: $blue;
   text-decoration: none;
   border-bottom: 1px dashed $blue;
-  & + & {
-    margin-left: 15px;
-  }
+  
   &--active {
     border: none;
     color: $dark;
@@ -39,6 +33,11 @@
   &:active {
     color: $red-dark;
     border-bottom: 1px dashed $red-dark;
+  }
+  &--active:hover,
+  &--active:active {
+    border: none;
+    color: $dark;
   }
 }
 
@@ -54,14 +53,20 @@
   }
 }
 
-.sort__menu {
+.sort__menu-activator {
+  color: $dark;
+  display: block;
+  cursor: pointer;
   @media screen and (min-width: $tablet) {
     display: none;
   }
+}
+
+.sort__menu {
   position: absolute;
   padding: 0;
   opacity: 0;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   right: 0;
@@ -75,13 +80,16 @@
     opacity: 1;
     z-index: 1;
   }
-}
-
-.sort__active {
-  color: $dark;
-  display: block;
   @media screen and (min-width: $tablet) {
-    display: none;
+    position: relative;
+    right: unset;
+    top: unset;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+    max-height: unset;
+    display: flex;
   }
 }
 
@@ -94,10 +102,20 @@
   &:first-of-type {
     margin-top: 0;
   }
+  @media screen and (min-width: $tablet) {
+    margin-top: 0;
+    display: none;
+  }
 }
 
 .sort__list {
   & + & {
     margin-top: 12px;
+  }
+  @media screen and (min-width: $tablet) {
+    & + & {
+      margin-top: 0px;
+      margin-left: 15px;
+    }
   }
 }
