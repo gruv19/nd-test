@@ -79,6 +79,9 @@
     text-align: center;
     padding: 2px 0 0;
   }
+  &--filled ~ .search__label-box > .search__label {
+    box-shadow: none;
+  }
   
   @media screen and (min-width: $tablet) {
     font-size: 18px;
