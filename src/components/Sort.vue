@@ -1,42 +1,45 @@
 <template>
   <div class="sort">
     <p class="sort__label">Сортировать по:</p>
-    <a 
-      href="#" 
-      class="sort__link" 
-      v-for="property in properties" 
-      :key="property" 
-      @click.prevent="sort(property)" 
-      :class="property.isActive ? 'sort__link--active' : ''"
-    >
-      <span class="sort__text">{{ property.title }}</span>
-      <svg 
-        v-if="property.isActive" 
-        class="sort__icon" 
-        :class="property.inAscending ? '' : 'sort__icon--up'" 
-        viewBox="0 0 7 8" 
+    <a class="sort__menu-activator" @click="openMenu">
+      <span class="sort__text">{{ active.title }}</span>
+      <svg
+        class="sort__icon"
+        :class="active.sortOrder === 'ascending' ? '' : 'sort__icon--up'"
+        viewBox="0 0 7 8"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
       </svg>
     </a>
-    <a class="sort__active" @click="openMenu">
-      <span class="sort__text">{{ active.title }}</span>
-      <svg class="sort__icon" :class="active.inAscending ? '' : 'sort__icon--up'" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
-      </svg>
-    </a>
     <div class="sort__menu" :class="menuIsOpen ? 'sort__menu--active' : ''">
       <div class="sort__list" v-for="property in properties" :key="property">
-        <a href="#" class="sort__item" @click.prevent="sortMobile(property, 'descending')">
+        <a href="#" class="sort__item" @click.prevent="sort(property, 'descending')">
           <span class="sort__text">{{ property.title }}</span>
           <svg class="sort__icon sort__icon--up" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
           </svg>
         </a>
-        <a href="#" class="sort__item" @click.prevent="sortMobile(property, 'ascending')">
+        <a href="#" class="sort__item" @click.prevent="sort(property, 'ascending')">
           <span class="sort__text">{{ property.title }}</span>
           <svg class="sort__icon" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
+          </svg>
+        </a>
+        <a
+          href="#"
+          class="sort__link"
+          :class="property.title === active.title ? 'sort__link--active' : ''"
+          @click.prevent="sort(property, property.title === active.title ? changedActiveSortOrder : 'ascending')"
+        >
+          <span class="sort__text">{{ property.title }}</span>
+          <svg
+            v-if="property.title === active.title"
+            class="sort__icon"
+            :class="active.sortOrder === 'ascending' ? '' : 'sort__icon--up'"
+            viewBox="0 0 7 8"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
           </svg>
         </a>
@@ -94,17 +97,13 @@ export default {
       properties: [
         {
           title: 'Цене',
-          inAscending: false,
           ascending: sortCostAscend,
           descending: sortCostDescend,
-          isActive: false,
         },
         {
           title: 'Алфавиту',
-          inAscending: true,
           ascending: sortAlphabetAscend,
           descending: sortAlphabetDescend,
-          isActive: true,
         },
       ],
       active: {},
@@ -112,47 +111,36 @@ export default {
     };
   },
   methods: {
-    sort(property) {
-      this.unactivate();
-      property.isActive = true;
-      if (property.inAscending) {
-        this.clearSortOrder();
-        property.inAscending = false;
-        this.$emit('sort', property.descending);
-      } else {
-        this.clearSortOrder();
-        property.inAscending = true;
-        this.$emit('sort', property.ascending);
-      }
+    sort(property, sortOrder) {
       this.active = property;
-    },
-    sortMobile(property, sortOrder) {
-      this.unactivate();
-      property.isActive = true;
-      property.inAscending = sortOrder === 'ascending' ? true : false;
-      this.active = property;
+      this.active.sortOrder = sortOrder;
       this.$emit('sort', property[sortOrder]);
+      window.localStorage.setItem('sort', JSON.stringify(this.active));
       this.menuIsOpen = false;
     },
     openMenu() {
       this.menuIsOpen = !this.menuIsOpen;
     },
-    unactivate() {
-      this.properties = this.properties.map((property) => {
-        property.isActive = false;
-        return property;
-      });
-    },
-    clearSortOrder() {
-      this.properties = this.properties.map((property) => {
-        property.inAscending = false;
-        return property;
-      });
-    },
+  },
+  computed: {
+    changedActiveSortOrder() {
+      if (this.active.sortOrder === 'ascending') {
+        return 'descending';
+      }
+      return 'ascending';
+    }
   },
   mounted() {
-    this.$emit('sort', this.properties[1].ascending);
-    this.active = this.properties[1];
+    let sort = window.localStorage.getItem('sort');
+    if (sort) {
+      sort = JSON.parse(sort);
+      const index = this.properties.findIndex(item => item.title === sort.title);
+      sort.ascending = this.properties[index].ascending;
+      sort.descending = this.properties[index].descending;
+      this.sort(sort, sort.sortOrder);
+    } else {
+      this.sort(this.properties[1], 'ascending');
+    }
   }
 }
 </script>
