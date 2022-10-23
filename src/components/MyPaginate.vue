@@ -53,9 +53,6 @@ export default {
       window.localStorage.setItem('elem_on_page', this.elemOnPage);
     },
   },
-  mounted() {
-
-  },
   updated() {
     if (window.innerWidth > 767) {
       this.pageRange = 5;
@@ -70,6 +67,12 @@ export default {
     let elemOnPage = +window.localStorage.getItem('elem_on_page');
     if (elemOnPage === this.elemOnPage) {
       this.page = page;
+    }
+    if (this.page === 0) {
+      this.page = 1;
+    }
+    if (this.page >= this.pageCount) {
+      this.page = this.pageCount;
     }
     this.choosePage(this.page);
   }
