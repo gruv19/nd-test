@@ -1,0 +1,71 @@
+.my-paginate {
+  display: flex;
+  justify-content: center;
+}
+
+.my-paginate__item {
+  width: 40px;
+  height: 40px;
+  background: #F0F4FC;
+  border-radius: 3px;
+  font-family: 'HouschkaPro';
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0066B3;
+  &.active {
+    background-color: $dark;
+    color: #FFFFFF;
+  }
+  &.disabled {
+    color: $middle-dark;
+    background-color: #FFFFFF;
+  }
+  &--prev.disabled,
+  &--next.disabled {
+    background-color: $light;
+  }
+  &--prev.disabled .my-paginate__link-icon,
+  &--next.disabled .my-paginate__link-icon {
+    fill: $middle-dark;
+  }
+  & + & {
+    margin-left: 5px;
+  }
+  &:nth-of-type(2) {
+    margin-left: 0;
+  }
+  @media screen and (min-width: $tablet) {
+    width: 50px;
+    height: 50px;
+    & + & {
+      margin-left: 10px;
+    }
+  }
+}
+
+.my-paginate__item--prev,
+.my-paginate__item--next {
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
+}
+
+.my-paginate__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.my-paginate__link-icon {
+  fill: $blue;
+  width: 8px;
+  height: 12px;
+  &--prev {
+    transform: rotateZ(180deg);
+  }
+}
