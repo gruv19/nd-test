@@ -1,24 +1,14 @@
-# nd-test
+# Тестовое задание Группа компаний НД
 
-## Project setup
-```
+* При выполнении старался придерживаться методологии БЭМ.
+* Разделил проект на компоненты для удобства разработки.
+
+### Запуск проекта
+Для запуска проекта и его доработки необходимо склонировать репозиторий и из каталога проекта в терманале выполнить команды:
+```ssh
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Итоговая версия
+Финальную версию можно посмотреть [ПО ССЫЛКЕ](https://gruv19.github.io/nd-test-catalog/) 
