@@ -7,7 +7,7 @@
       <Search @search='searchCourse' />
     </div>
     <div class="main__manage">
-      <div class="main__manage-count">{{ courses.length }} результатов</div>
+      <div class="main__manage-count">{{ findedCourses.length }} результатов</div>
       <div class="main__sort">
         <Sort @sort="sortCourses" />
       </div>
@@ -66,8 +66,9 @@ export default {
     findedCourses() {
       let courses = this.courses;
       if (this.searchText) {
+        let text = this.searchText.replaceAll(/([\.\?\/\]\[\^\|\*\+\(\)\{\}\\])/g, '\\$1'); // eslint-disable-line
         courses = courses.filter((item) => {
-          const finded = item.title.toUpperCase().search(new RegExp(`${this.searchText.toUpperCase()}`, 'gi'));
+          const finded = item.title.toUpperCase().search(new RegExp(`${text.toUpperCase()}`, 'gi'));
           if (finded > -1) {
             return item;
           }
