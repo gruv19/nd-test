@@ -26,6 +26,14 @@ export default {
   methods: {
     search() {
       this.$emit('search', this.text);
+      window.localStorage.setItem('search_text', this.text);
+    }
+  },
+  mounted() {
+    let text = window.localStorage.getItem('search_text');
+    if (text) {
+      this.text = text;
+      this.search();
     }
   },
 }
