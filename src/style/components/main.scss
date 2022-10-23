@@ -18,19 +18,42 @@
 }
 
 .main__search {
-
+  margin-bottom: 30px;
 }
 
 .main__manage {
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .main__manage-count {
-
+  font-family: 'HouschkaPro';
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #9DB0BF;
+  @media screen and (min-width: $tablet) {
+    font-size: 15px;
+    line-height: 19px;
+  }
 }
 
 .main__cards {
-
+  display: grid;
+  grid-gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+  @media screen and (min-width: $tablet) {
+    grid-template-columns: repeat(2, 324px);
+    grid-gap: 30px;
+    margin-bottom: 45px;
+  }
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(3, 369px);
+    grid-gap: 30px;
+  }
 }
 
 .main__pagination {
