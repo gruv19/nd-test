@@ -14,13 +14,13 @@
     </a>
     <div class="sort__menu" :class="menuIsOpen ? 'sort__menu--active' : ''">
       <div class="sort__list" v-for="property in properties" :key="property">
-        <a href="#" class="sort__item" @click.prevent="sort(property, 'descending')">
+        <a href="#" class="sort__item" @click.prevent="reSort(property, 'descending')">
           <span class="sort__text">{{ property.title }}</span>
           <svg class="sort__icon sort__icon--up" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
           </svg>
         </a>
-        <a href="#" class="sort__item" @click.prevent="sort(property, 'ascending')">
+        <a href="#" class="sort__item" @click.prevent="reSort(property, 'ascending')">
           <span class="sort__text">{{ property.title }}</span>
           <svg class="sort__icon" viewBox="0 0 7 8" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.5 0V7M3.5 7L1 4.5M3.5 7L6 4.5" stroke="#EB3737"/>
@@ -30,7 +30,7 @@
           href="#"
           class="sort__link"
           :class="property.title === active.title ? 'sort__link--active' : ''"
-          @click.prevent="sort(property, property.title === active.title ? changedActiveSortOrder : 'ascending')"
+          @click.prevent="reSort(property, property.title === active.title ? changedActiveSortOrder : 'ascending')"
         >
           <span class="sort__text">{{ property.title }}</span>
           <svg
@@ -111,7 +111,7 @@ export default {
     };
   },
   methods: {
-    sort(property, sortOrder) {
+    reSort(property, sortOrder) {
       this.active = property;
       this.active.sortOrder = sortOrder;
       this.$emit('sort', property[sortOrder]);
@@ -131,15 +131,15 @@ export default {
     }
   },
   mounted() {
-    let sort = window.localStorage.getItem('sort');
-    if (sort) {
-      sort = JSON.parse(sort);
-      const index = this.properties.findIndex(item => item.title === sort.title);
-      sort.ascending = this.properties[index].ascending;
-      sort.descending = this.properties[index].descending;
-      this.sort(sort, sort.sortOrder);
+    let sortActive = window.localStorage.getItem('sort');
+    if (sortActive) {
+      sortActive = JSON.parse(sortActive);
+      const index = this.properties.findIndex(item => item.title === sortActive.title);
+      sortActive.ascending = this.properties[index].ascending;
+      sortActive.descending = this.properties[index].descending;
+      this.reSort(sortActive, sortActive.sortOrder);
     } else {
-      this.sort(this.properties[1], 'ascending');
+      this.reSort(this.properties[1], 'ascending');
     }
   }
 }

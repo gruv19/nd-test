@@ -42,7 +42,7 @@ import courses from "@/mock.js";
 
 export default {
   name: 'App',
-  components: { Header, Search, Sort, Card, MyPaginate, },
+  components: { Header, Search, Sort, Card, MyPaginate },
   data() {
     return {
       courses: [],
