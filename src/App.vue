@@ -4,7 +4,7 @@
       <Header />
     </div>
     <div class="main__search">
-      <Search />
+      <Search @search='searchCourse' />
     </div>
     <div class="main__manage">
       <div class="main__manage-count">{{ courses.length }} результатов</div>
@@ -14,7 +14,7 @@
     </div>
     <div class="main__cards">
       <Card
-        v-for="course in courses"
+        v-for="course in shownCourses"
         :key="course.id"
         :id="course.id"
         :img="course.preview_img_path"
@@ -24,7 +24,9 @@
         :series="course.series"
       />
     </div>
-    <div class="main__pagination"></div>
+    <div class="main__pagination">
+      <MyPaginate :coursesCount="findedCourses.length" @changePage="changeList" />
+    </div>
   </main>
 </template>
 
@@ -34,20 +36,52 @@ import Header from "@/components/Header.vue";
 import Search from "@/components/Search.vue";
 import Sort from "@/components/Sort.vue";
 import Card from "@/components/Card.vue";
+import MyPaginate from "@/components/MyPaginate.vue";
 import courses from "@/mock.js";
+
 
 export default {
   name: 'App',
-  components: { Header, Search, Sort, Card },
+  components: { Header, Search, Sort, Card, MyPaginate, },
   data() {
     return {
       courses: [],
+      range: {},
+      sortFunction: null,
+      searchText: '',
     };
   },
   methods: {
     sortCourses(sortFunction) {
-      console.log(sortFunction(this.courses));
+      this.sortFunction = sortFunction;
+    },
+    changeList(range) {
+      this.range = range;
+    },
+    searchCourse(text) {
+      this.searchText = text;
     }
+  },
+  computed: {
+    findedCourses() {
+      let courses = this.courses;
+      if (this.searchText) {
+        courses = courses.filter((item) => {
+          const finded = item.title.toUpperCase().search(new RegExp(`${this.searchText.toUpperCase()}`, 'gi'));
+          if (finded > -1) {
+            return item;
+          }
+        })
+      }
+      return courses;
+    },
+    shownCourses() {
+      let courses = this.findedCourses;
+      if (this.sortFunction) {
+        this.sortFunction(courses);
+      }
+      return courses.slice(this.range.from, this.range.to);
+    },
   },
   mounted() {
     this.courses = courses;
