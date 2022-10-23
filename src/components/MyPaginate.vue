@@ -1,5 +1,6 @@
 <template>
   <Paginate
+    v-model="page"
     :page-count="pageCount"
     :page-range="pageRange"
     :margin-pages="1"
@@ -39,16 +40,22 @@ export default {
       pageRange: 3,
       pageCount: 0,
       elemOnPage: 3,
+      page: 1,
     };
   },
   methods: {
     choosePage(pageNum) {
+      this.page = pageNum;
       const lastElement = pageNum * this.elemOnPage > this.coursesCount ? this.coursesCount : pageNum * this.elemOnPage;
       const firstElement = (pageNum - 1) * this.elemOnPage === 0 ? 0 : (pageNum - 1) * this.elemOnPage;
       this.$emit('changePage', { from: firstElement, to: lastElement});
+      window.localStorage.setItem('page', this.page);
+      window.localStorage.setItem('elem_on_page', this.elemOnPage);
     },
   },
-  mounted() {},
+  mounted() {
+
+  },
   updated() {
     if (window.innerWidth > 767) {
       this.pageRange = 5;
@@ -59,7 +66,12 @@ export default {
       this.elemOnPage = 9;
     }
     this.pageCount = Math.ceil(this.coursesCount / this.elemOnPage);
-    this.choosePage(1);
+    let page = +window.localStorage.getItem('page');
+    let elemOnPage = +window.localStorage.getItem('elem_on_page');
+    if (elemOnPage === this.elemOnPage) {
+      this.page = page;
+    }
+    this.choosePage(this.page);
   }
 }
 </script>
